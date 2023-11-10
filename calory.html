@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meal Planner - Calorie Calculator</title>
+    <style>
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-image: url('bg.jpg'); /* Replace 'your-image-url.jpg' with the path to your image */
+            background-size: cover; /* Cover the entire viewport */
+            background-position: center; /* Center the background image */
+            background-repeat: no-repeat; /* Do not repeat the background image */
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-top: 20px;
+        }
+
+        form {
+            background-color: #fff;
+            max-width: 400px;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        input {
+            width: calc(100% - 16px);
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        button {
+            width: auto;
+            height: auto;
+            border: 0px dashed #000000;
+            padding: 10px 20px;
+            cursor:pointer;
+            background: #9c7f35;
+            background: linear-gradient(90deg);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='', endColorstr='undefined', GradientType=1 );
+            border-radius: 2px;
+            box-shadow: 0px 3px 2px 0px rgba(0, 0, 0, 0.12);
+            font-family: Arial, Tahoma;
+            font-weight: bold;
+            font-size: 13px;
+            color: #ffffff;
+            text-align: center;
+            text-shadow: 0px -1px 1px rgba(0, 0, 0, 0);
+            transform: scale(1) ;
+            transition: all 1s ease;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        h3 {
+            text-align: center;
+            color: #333;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            background-color: #fff;
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .deleteButton {
+            background-color: #ff6666;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        #totalCalories {
+            text-align: center;
+            margin-top: 20px;
+            color: #333;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Meal Planner - Calorie Calculator</h2>
+    <br><br><br><br>
+
+    <form id="mealForm">
+        <label for="foodName">Food Name:</label>
+        <input type="text" id="foodName" required>
+
+        <label for="quantity">Quantity:</label>
+        <input type="number" id="quantity" required>
+
+        <label for="caloriesPerServing">Calories per Serving:</label>
+        <input type="number" id="caloriesPerServing" required>
+
+        <center><button type="button" onclick="addFoodItem()">Add Food Item</button></center>
+    </form>
+
+    <h3>Meal Summary</h3>
+    <ul id="mealSummary"></ul>
+    <p id="totalCalories">Total Calories: 0</p>
+
+    <center><button onclick="goToIndexPage()">Back to the Main Page</button></center>
+
+    <script>
+        var mealItems = [];
+
+        function addFoodItem() {
+            var foodName = document.getElementById('foodName').value;
+            var quantity = parseFloat(document.getElementById('quantity').value);
+            var caloriesPerServing = parseFloat(document.getElementById('caloriesPerServing').value);
+
+            if (quantity <= 0 || caloriesPerServing <= 0 || isNaN(quantity) || isNaN(caloriesPerServing)) {
+                alert("Please enter valid quantity and calories.");
+                return;
+            }
+
+            mealItems.push({
+                name: foodName,
+                quantity: quantity,
+                caloriesPerServing: caloriesPerServing
+            });
+
+            updateMealSummary();
+        }
+
+        function deleteFoodItem(index) {
+            mealItems.splice(index, 1);
+            updateMealSummary();
+        }
+
+        function updateMealSummary() {
+            var mealSummaryList = document.getElementById('mealSummary');
+            var totalCaloriesElement = document.getElementById('totalCalories');
+            var totalCalories = 0;
+
+            mealSummaryList.innerHTML = "";
+
+            for (var i = 0; i < mealItems.length; i++) {
+                var item = mealItems[i];
+                var itemCalories = item.quantity * item.caloriesPerServing;
+                totalCalories += itemCalories;
+
+                var listItem = document.createElement('li');
+
+                var deleteButton = document.createElement('button');
+                deleteButton.textContent = 'Delete';
+                deleteButton.className = 'deleteButton';
+                deleteButton.onclick = (function(index) {
+                    return function() {
+                        deleteFoodItem(index);
+                    };
+                })(i);
+
+                listItem.textContent = `${item.quantity} ${item.name} - ${itemCalories} calories`;
+                listItem.appendChild(deleteButton);
+                mealSummaryList.appendChild(listItem);
+            }
+
+            totalCaloriesElement.textContent = `Total Calories: ${totalCalories}`;
+        }
+
+        function goToIndexPage() {
+            window.location.href = 'index.html';
+        }
+    </script>
+
+</body>
+</html>

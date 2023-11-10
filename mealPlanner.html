@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Meal Planner</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      /* Style for the meal items */
+      .meal-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px; /* Add margin to the bottom of each meal item */
+      }
+
+      .meal-item img {
+        width: 100px; /* Adjust the width as needed */
+        height: auto; /* Maintain aspect ratio */
+        margin-right: 10px; /* Add margin to the right of the image */
+        margin-left: 10px; /* Add margin to the left of the image */
+      }
+
+      .meal-item button {
+        margin-left: 10px;
+      }
+
+      .meal-name {
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Meal Planner</h1>
+    <div id="mealPlanner">
+      <!-- Display the added meals and controls as needed -->
+    </div>
+    <script>
+      // Retrieve the meal planner data from localStorage and display it
+      var mealPlanner = JSON.parse(localStorage.getItem('mealPlanner'));
+      var mealPlannerContainer = document.getElementById('mealPlanner');
+      mealPlannerContainer.innerHTML = '<h2>Added Meals</h2>';
+      if (mealPlanner && mealPlanner.length > 0) {
+        mealPlanner.forEach((meal, index) => {
+          var mealItem = document.createElement('div');
+          mealItem.className = 'meal-item';
+
+          mealItem.innerHTML = `
+          <img src="${meal.strMealThumb}" alt="${meal.strMeal}">
+          <p class="meal-name">${meal.strMeal}</p>
+          <button onclick="updateMealNameInPlanner(${index})">Edit Name</button> <!-- Add the "Edit Name" button here -->
+          <button onclick="deleteMealFromPlanner(${index})">Delete</button>
+          <input type="text" id="newNameInput${index}" placeholder="Enter new name" style="display: none;">
+          <button onclick="saveUpdatedName(${index})" id="saveNameButton${index}" style="display: none;">Save</button>
+        `;
+
+
+          mealPlannerContainer.appendChild(mealItem);
+        });
+      }
+
+      function deleteMealFromPlanner(index) {
+        mealPlanner.splice(index, 1);
+        localStorage.setItem('mealPlanner', JSON.stringify(mealPlanner));
+
+        // Remove the specific meal item from the DOM
+        var mealItem = document.querySelector(`#mealPlanner .meal-item:nth-child(${index + 2})`);
+        if (mealItem) {
+          mealItem.remove();
+        }
+      }
+
+      function updateMealNameInPlanner(index) {
+        var nameInput = document.getElementById(`newNameInput${index}`);
+        var saveButton = document.getElementById(`saveNameButton${index}`);
+
+        nameInput.style.display = 'inline-block';
+        saveButton.style.display = 'inline-block';
+      }
+
+      function saveUpdatedName(index) {
+        var nameInput = document.getElementById(`newNameInput${index}`);
+        var saveButton = document.getElementById(`saveNameButton${index}`);
+
+        var newMealName = nameInput.value;
+
+        if (newMealName.trim() !== '') {
+          mealPlanner[index].strMeal = newMealName;
+          localStorage.setItem('mealPlanner', JSON.stringify(mealPlanner));
+        }
+
+        nameInput.style.display = 'none';
+        saveButton.style.display = 'none';
+        updateMealPlannerDisplay();
+      }
+    </script>
+  </body>
+</html>

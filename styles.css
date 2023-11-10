@@ -1,0 +1,282 @@
+/* Style the body */
+/* Reset some default styles */
+body, html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* This prevents body from scrolling */
+  background-image: url('bg.jpg'); /* Replace 'your-image-url.jpg' with the path to your image */
+  background-size: cover; /* Cover the entire viewport */
+  background-position: center; /* Center the background image */
+  background-repeat: no-repeat; /* Do not repeat the background image */
+}
+
+/* Style the body */
+body {
+  font-family: 'Helvetica', Arial, sans-serif;
+  background-color: #d0c7c2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between; /* This ensures content fills the entire viewport */
+  min-height: 100%; /* Use min-height to ensure it fills the viewport */
+  padding: 0;
+  margin: 0;
+  overflow: auto; /* Enable scrolling if content exceeds viewport */
+  
+  
+}
+
+
+/* Style the title */
+#title {
+  font-family: 'Montserrat', sans-serif; /* Use the Montserrat font */
+  font-size: 36px;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+/* Style the welcome message */
+#welcome {
+  font-size: 18px;
+  color: #666;
+  text-align: center;
+  margin-bottom: 20px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  line-height: 1.5;
+}
+
+/* Style the category select */
+#category {
+  font-size: 16px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin: 0;
+  width: 50%;
+  font-family: tahoma;
+}
+
+/* Style the "Get Meals by Category" button */
+button {
+  width: auto;
+  height: auto;
+  border: 0px dashed #000000;
+  padding: 10px 20px;
+  cursor:pointer;
+  background: #9c7f35;
+  background: linear-gradient(90deg);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='', endColorstr='undefined', GradientType=1 );
+  border-radius: 2px;
+  box-shadow: 0px 3px 2px 0px rgba(0, 0, 0, 0.12);
+  font-family: Arial, Tahoma;
+  font-weight: bold;
+  font-size: 13px;
+  color: #ffffff;
+  text-align: center;
+  text-shadow: 0px -1px 1px rgba(0, 0, 0, 0);
+  transform: scale(1) ;
+  transition: all 1s ease;
+  margin-top: 10px;
+}
+
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* Style the meal list container */
+#list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* Style the individual meal boxes */
+.meal-box {
+  color: #fff; /* Set text color to white */
+  width: 250px;
+  margin: 10px;
+  padding: 10px;
+  background-color: #4a332d;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  transition: transform 0.3s;
+}
+
+.meal-box:hover {
+  transform: translateY(-5px);
+}
+
+/* Style the meal thumbnails */
+.meal-thumbnail {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Style the meal links */
+.meal-box a {
+  text-decoration: none;
+  color: #fff; /* Set text color to white */
+  font-weight: bold;
+  display: block;
+  margin-top: 10px;
+}
+
+/* Style the meal details container */
+#displayDetailMeals {
+  text-align: center;
+  margin-top: 20px;
+  
+}
+
+/* Style the meal details */
+#displayDetailMeals h2 {
+  font-size: 30px;
+  font-weight: bold;
+  color: #333;
+  
+}
+
+#displayDetailMeals img {
+  max-width: 100%;
+  height: auto;
+  margin: 20px 0;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+}
+
+#displayDetailMeals p {
+  font-size: 18px;
+  color: #666;
+}
+
+#instruction {
+  font-size: 28px;
+  margin: 20px auto;
+  text-align: center;
+  padding: 0 20%;
+  font-family: tahoma;
+  line-height: 30px;
+}
+
+#displayDetailMeals a {
+  color: #007bff;
+}
+
+/* Style the "Back to Category" and "Add to Meal Planner" buttons */
+button#meal-detail-buttons {
+  width: auto;
+  height: auto;
+  border: 0px dashed #000000;
+  padding: 10px 20px;
+  cursor:pointer;
+  background: #9c7f35;
+  background: linear-gradient(90deg);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='', endColorstr='undefined', GradientType=1 );
+  border-radius: 2px;
+  box-shadow: 0px 3px 2px 0px rgba(0, 0, 0, 0.12);
+  font-family: Arial, Tahoma;
+  font-weight: bold;
+  font-size: 13px;
+  color: #ffffff;
+  text-align: center;
+  text-shadow: 0px -1px 1px rgba(0, 0, 0, 0);
+  transform: scale(1) ;
+  transition: all 1s ease;
+  margin-top: 10px;
+}
+
+
+/* Style the meal planner container */
+#mealPlanner {
+  margin-top: 20px;
+  text-align: center;
+}
+
+/* Style the individual meal items in the meal planner */
+.meal-item {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin: 10px;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Style the "Update" and "Delete" buttons in the meal planner */
+.meal-item button {
+  width: auto;
+  height: auto;
+  border: 0px dashed #000000;
+  padding: 10px 20px;
+  cursor:pointer;
+  background: #9c7f35;
+  background: linear-gradient(90deg);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='', endColorstr='undefined', GradientType=1 );
+  border-radius: 2px;
+  box-shadow: 0px 3px 2px 0px rgba(0, 0, 0, 0.12);
+  font-family: Arial, Tahoma;
+  font-weight: bold;
+  font-size: 13px;
+  color: #ffffff;
+  text-align: center;
+  text-shadow: 0px -1px 1px rgba(0, 0, 0, 0);
+  transform: scale(1) ;
+  transition: all 1s ease;
+  margin-top: 10px;
+}
+
+/* Style the ingredient list */
+#ingredients {
+  font-size: 18px;
+  margin: 20px auto;
+  text-align: left;
+  padding: 0 20%;
+  font-family: tahoma;
+}
+
+#ingredients ul {
+  list-style-type: disc; /* Use a disc bullet style */
+  margin-left: 20px; /* Add indentation for list items */
+}
+
+#ingredients ul li {
+  margin: 5px 0;
+  color: #333; /* Darken the text color */
+}
+
+/* Style the source link */
+#source-link {
+  font-size: 16px;
+  color: #007bff;
+  text-decoration: none;
+}
+
+/* Style the "Back to Category" and "Add to Meal Planner" buttons (if not already styled) */
+button#meal-detail-buttons {
+  font-size: 18px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 10px 10px 10px 0;
+  transition: background-color 0.3s;
+}
+
+button#meal-detail-buttons:hover {
+  background-color: #0056b3;
+}
+
+
+
+

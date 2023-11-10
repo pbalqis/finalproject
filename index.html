@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello World!</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" />
+  </head>
+  <script type="text/javascript" src="main.js"></script>
+  <body>
+    <h1 id="title">MEAL PLANNER</h1>
+    <p id="welcome">Welcome to meal planner application. <br> Embrace the simplicity of meal planning and cooking with our user-friendly application, tailored to elevate your culinary experience. </p>
+  
+    <select id="category">
+      <option value="" disable selected>Select Option</option>
+      <option value="Beef">Beef</option>
+      <option value="Chicken">Chicken</option>
+      <option value="Dessert">Dessert</option>
+      <option value="Lamb">Lamb</option>
+      <option value="Miscellaneous">Miscellaneous</option>
+      <option value="Pasta">Pasta</option>
+      <option value="Pork">Pork</option>
+      <option value="Side">Side</option>
+      <option value="Seafood">Seafood</option>
+      <option value="Vegetarian">Vegetarian</option>
+
+      
+      </select>
+
+      <button onclick="buttonclick()">Get Meals by Category</button>
+
+      <div id="list"></div>
+      <div id="displayDetailMeals">
+        <!-- This is where the meal details and the "Back to Category" button will be added -->
+      </div>
+    
+  
+      <!-- Add a new section for the meal planner display -->
+      <div id="mealPlanner">
+        <!-- This is where the added meals and controls will be displayed -->
+      </div>
+
+      <!-- Add a button to view the mealPlanner page -->
+      <button onclick="viewMealPlannerPage()">View Meal Planner</button>
+      <button onclick="goToCaloryPage()">Calculate Calories</button>
+    <br><br><br>
+      <br><br><br>
+
+
+  </body>
+</html>
+
+
